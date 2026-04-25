@@ -1211,12 +1211,10 @@
     from {
       opacity: 0;
       transform: translateY(12px) scale(0.985);
-      filter: blur(4px);
     }
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
-      filter: blur(0);
     }
   }
   @keyframes challengeScreenIn {
@@ -1319,12 +1317,10 @@
     from {
       opacity: 0;
       transform: translateY(28px);
-      filter: blur(10px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
-      filter: blur(0);
     }
   }
 
@@ -1332,12 +1328,10 @@
     from {
       opacity: 0;
       transform: rotate(-3.5deg) translateY(36px) scale(0.92);
-      filter: blur(8px);
     }
     to {
       opacity: 1;
       transform: rotate(-3.5deg) translateY(0) scale(1);
-      filter: blur(0);
     }
   }
 
@@ -1345,12 +1339,10 @@
     from {
       opacity: 0;
       transform: rotate(-2deg) translateY(40px);
-      filter: blur(6px);
     }
     to {
       opacity: 1;
       transform: rotate(-2deg) translateY(0);
-      filter: blur(0);
     }
   }
 
@@ -1420,6 +1412,50 @@
     .headline__brand { transform: rotate(-3.5deg) !important; }
     .headline__challenge { transform: rotate(-2deg) !important; }
     .footer-hint { opacity: 0.75 !important; }
+    .challenge-screen { opacity: 1 !important; transform: none !important; }
+  }
+
+  /*
+   * iPad / iOS WebKit: animations using fill-mode "both" + blur filters can fail to paint,
+   * leaving headlines and cards stuck at opacity: 0 (only grid wallpaper + nav visible).
+   */
+  @media (hover: none) and (pointer: coarse) {
+    .deck {
+      perspective: none;
+    }
+    .slide::after,
+    .panel-art__blob,
+    .panel-art__arc {
+      animation: none !important;
+    }
+    .eyebrow,
+    .headline__the,
+    .headline__brand,
+    .headline__challenge,
+    .challenge-screen,
+    .challenge-progress__fill,
+    .challenge-btn,
+    .challenge-portal,
+    .concept-card,
+    .panel-art,
+    .panel-art__badge,
+    .footer-hint,
+    .ntooitive-showcase__label,
+    .challenge-screen .ntooitive-showcase h4.ntooitive-showcase__title,
+    .challenge-screen .ntooitive-showcase p.ntooitive-showcase__subtitle,
+    .nt-info-card,
+    .nt-mini-flow {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+    }
+    .headline__brand { transform: rotate(-3.5deg) !important; }
+    .headline__challenge { transform: rotate(-2deg) !important; }
+    .footer-hint {
+      opacity: 0.75 !important;
+      transform: translateX(-50%) !important;
+    }
     .challenge-screen { opacity: 1 !important; transform: none !important; }
   }
 
